@@ -1,5 +1,5 @@
 import {
-    GET_ALL_RECIPES,
+    GET_ALL_RECIPES, NEW_RECIPE,
     // RECIPE_VOTE_DOWN,
     // RECIPE_VOTE_UP,
     // GET_RECIPE,
@@ -76,16 +76,25 @@ export function getAllRecipes() {
 //     }
 // }
 
-// export function newPost(formValues) {
-//     return dispatch => {
-//         superagent.post(SERVER_URL + '/api/v1/recipes')
-//             .auth(USERNAME, PASSWORD)
-//             .send(formValues)            
-//             .on('error', actionError(NEW_RECIPE))
-//             // .use(nocache)
-//             .then(response => {dispatch(actionSuccess(response.body, NEW_RECIPE))});        
-//     }
-// }
+export function newRecipePost(formValues) {
+    return dispatch => {
+        // superagent.post(SERVER_URL + '/api/v1/recipes')
+        //     .auth(USERNAME, PASSWORD)
+        //     .send(formValues)            
+        //     .on('error', actionError(NEW_RECIPE))
+        //     // .use(nocache)
+        //     .then(response => {dispatch(actionSuccess(response.body, NEW_RECIPE))});        
+        axios.post(process.env.REACT_APP_SERVER_URL + '/node', {
+          data: formValues,
+          auth: {
+            username: process.env.REACT_APP_USERNAME,
+            password: process.env.REACT_APP_PASSWORD,
+          }
+        })
+        .then(response => dispatch(actionSuccess(response.data, NEW_RECIPE)))
+        .catch(error => dispatch(actionError(NEW_RECIPE)));
+    }    
+}
 
 // export function deletePost(id) {
 //     return dispatch => {
