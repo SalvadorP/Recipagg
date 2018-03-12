@@ -7,6 +7,9 @@ export function actionSuccess(data, type) {
 }
 
 export function actionError(type) {
+    console.log('THERE WAS AN ERROR');
+    console.log(type);
+    console.log('-********************-');
     return {
         type: type,
         data: []

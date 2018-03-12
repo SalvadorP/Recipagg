@@ -4,23 +4,31 @@ import { connect } from 'react-redux';
 import { Col, Button, Row, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
+import serializeForm from 'form-serialize';
+import uniqid from 'uniqid';
+import { newRecipePost } from '../actions/Recipes';
 
 class RecipeForm extends Component {
 
     handleNewSubmit = (e) => {
         e.preventDefault();
-        console.log('SUBMIT!');
-        // const { newRecipe } = this.props;
-        // const data = new serializeForm(e.target, {hash: true});
-        // data.id = uniqid();     
-        // e.preventDefault();     
+        // console.log('SUBMIT!');
+        // console.log(this.props);
+        // console.log('*********');
+        const { newRecipePost } = this.props;
+        console.log(e.target);
+        const data = new serializeForm(e.target, {hash: true});
+        console.log(data);
+        data.id = uniqid();     
+        e.preventDefault();
+        newRecipePost(data);
         // newRecipe(data);
         // IDEA: once saved return to the list.
     }
 
     render() {
-        const types = [];
-        const tags = [];
+        const types = [{path: '#1', name: 'Type1'},{path: '#2', name: 'Type2'}];
+        const tags = [{path: '#1', name: 'Tag1'},{path: '#2', name: 'Tag2'}];
         return (
             <div>
                 <form className="form-horizontal" id="RecipeNewForm" onSubmit={this.handleNewSubmit.bind(this)}>
@@ -113,4 +121,14 @@ class RecipeForm extends Component {
     }
 }
 
-export default RecipeForm
+function mapStateToProps(state, recipeProps) {
+    return { recipe: [] };
+}
+
+function mapDispatchToProps (dispatch) {
+    return {
+        newRecipePost: (data) => dispatch(newRecipePost(data)),        
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeForm);
+

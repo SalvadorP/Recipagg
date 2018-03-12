@@ -6,6 +6,7 @@ import RecipeList from './RecipeList';
 import '../css/App.css';
 import MenuBar from './MenuBar';
 import RecipeNew from './RecipeNew';
+import RecipeDetails from './RecipeDetails';
 // import * as api from './api';
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
               <RecipeList />
           )} />
           <Route exact path="/recipe/new" component={RecipeNew} />
+          <Route exact path="/recipe/:nid" component={RecipeDetails} />
           <Route component={NoMatch} />
       </Switch>
       </div>

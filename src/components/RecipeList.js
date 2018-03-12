@@ -15,6 +15,7 @@ class RecipeList extends Component {
 
     render() {
         const { recipes = [] } = this.props;       
+        console.log(recipes);
         return (
             <Grid>            
                 <Row className="RecipeListTitle">
