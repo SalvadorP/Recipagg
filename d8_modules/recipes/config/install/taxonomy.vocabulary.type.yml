@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Recipe Type'
+vid: type
+description: 'Type of recipe'
+hierarchy: 0
+weight: 0

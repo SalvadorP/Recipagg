@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Recipe Tags'
+vid: recipe_tags
+description: 'Recipe tags like easy, gluten free, vegetarian'
+hierarchy: 0
+weight: 0
