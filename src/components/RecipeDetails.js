@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Col, Row, Grid } from "react-bootstrap";
 import { connect } from "react-redux";
 import { getRecipe } from "../actions/Recipes";
-import Recipe from "./Recipe";
+// import Recipe from "./Recipe";
 
 class RecipeDetails extends Component {
   componentDidMount() {
@@ -12,8 +12,12 @@ class RecipeDetails extends Component {
   }
 
   render() {
-      console.log(this.props.recipe);
-      const recipe = this.props.recipe;
+    let recipe = this.props.recipe;
+    if (recipe !== undefined && recipe.length > 0) {
+      recipe = recipe[0];
+      // console.log(recipe.title);
+    } 
+    console.log(recipe);
     // const { recipe } = this.props;
     // const recipe = this.props.recipe[0];
     // <Recipe recipe={recipe[0]} />
@@ -21,8 +25,8 @@ class RecipeDetails extends Component {
       <Grid>
         <Row>
           <Col xs={12} sm={12} md={12}>
-            <h1>Recipe Details</h1>
-            
+            <h1>{recipe.title}</h1>
+            <h5>{recipe.body}</h5>
           </Col>
         </Row>
       </Grid>
